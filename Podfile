@@ -7,7 +7,7 @@ target 'projectDataService' do
 
   # Pods for projectDataService
 	pod 'Alamofire'
-    	pod 'AlamofireObjectMapper'
-    	pod 'ObjectMapper'
+    pod 'AlamofireObjectMapper'
+    pod 'ObjectMapper'
 
 end

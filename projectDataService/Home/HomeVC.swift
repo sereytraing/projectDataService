@@ -1,5 +1,5 @@
 //
-//  DefaultVC.swift
+//  HomeVC.swift
 //  projectDataService
 //
 //  Created by TRAING Serey on 04/09/2018.
@@ -8,10 +8,8 @@
 
 import UIKit
 
-class DefaultVC: UIViewController {
+class HomeVC: DefaultVC {
 
-    let apiKey = "141ff21ff49305350dfc0017c9255329"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,5 +17,4 @@ class DefaultVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }

@@ -1,5 +1,5 @@
 //
-//  DefaultVC.swift
+//  SearchVC.swift
 //  projectDataService
 //
 //  Created by TRAING Serey on 04/09/2018.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class DefaultVC: UIViewController {
-
-    let apiKey = "141ff21ff49305350dfc0017c9255329"
+class SearchVC: DefaultVC {
+    
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
