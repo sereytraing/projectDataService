@@ -15,6 +15,12 @@
 		0F5DAE57213ECFD400320BB9 /* UpdateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5DAE56213ECFD400320BB9 /* UpdateProfile.storyboard */; };
 		0F5DAE59213ED33700320BB9 /* DetailGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE58213ED33700320BB9 /* DetailGameVC.swift */; };
 		0F5DAE5C213ED36400320BB9 /* DetailGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5DAE5B213ED36400320BB9 /* DetailGame.storyboard */; };
+		0F5DAE5E213FDCED00320BB9 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE5D213FDCED00320BB9 /* SessionManager.swift */; };
+		0F5DAE60213FDF0E00320BB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE5F213FDF0E00320BB9 /* User.swift */; };
+		0F5DAE63213FDFF300320BB9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE62213FDFF300320BB9 /* Game.swift */; };
+		0F5DAE65213FE1B300320BB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE64213FE1B300320BB9 /* Comment.swift */; };
+		0F5DAE692140013D00320BB9 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE682140013D00320BB9 /* GameCell.swift */; };
+		0F5DAE6B2140017B00320BB9 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5DAE6A2140017B00320BB9 /* GameCell.xib */; };
 		0FAF7221213EB1970029E238 /* DefaultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF7220213EB1970029E238 /* DefaultVC.swift */; };
 		0FAF7223213EB1AF0029E238 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF7222213EB1AF0029E238 /* LoginVC.swift */; };
 		0FAF7226213EB3740029E238 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF7225213EB3740029E238 /* CreateAccountVC.swift */; };
@@ -36,6 +42,12 @@
 		0F5DAE56213ECFD400320BB9 /* UpdateProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpdateProfile.storyboard; sourceTree = "<group>"; };
 		0F5DAE58213ED33700320BB9 /* DetailGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGameVC.swift; sourceTree = "<group>"; };
 		0F5DAE5B213ED36400320BB9 /* DetailGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailGame.storyboard; sourceTree = "<group>"; };
+		0F5DAE5D213FDCED00320BB9 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		0F5DAE5F213FDF0E00320BB9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0F5DAE62213FDFF300320BB9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		0F5DAE64213FE1B300320BB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		0F5DAE682140013D00320BB9 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		0F5DAE6A2140017B00320BB9 /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		0FAF7220213EB1970029E238 /* DefaultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVC.swift; sourceTree = "<group>"; };
 		0FAF7222213EB1AF0029E238 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		0FAF7225213EB3740029E238 /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
@@ -81,6 +93,7 @@
 		0F23A739213EADE5005FC997 /* projectDataService */ = {
 			isa = PBXGroup;
 			children = (
+				0F5DAE61213FDF1300320BB9 /* Model */,
 				0FAF7224213EB1B90029E238 /* Login */,
 				0FAF722B213EBCE00029E238 /* Home */,
 				0F5DAE55213ECEC700320BB9 /* UpdateProfile */,
@@ -90,6 +103,8 @@
 				0F23A746213EADE7005FC997 /* Info.plist */,
 				0F23A73A213EADE5005FC997 /* AppDelegate.swift */,
 				0FAF7220213EB1970029E238 /* DefaultVC.swift */,
+				0F5DAE5D213FDCED00320BB9 /* SessionManager.swift */,
+				0F5DAE6C2140017F00320BB9 /* GameCell */,
 			);
 			path = projectDataService;
 			sourceTree = "<group>";
@@ -110,6 +125,25 @@
 				0F5DAE5B213ED36400320BB9 /* DetailGame.storyboard */,
 			);
 			path = DetailGame;
+			sourceTree = "<group>";
+		};
+		0F5DAE61213FDF1300320BB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F5DAE5F213FDF0E00320BB9 /* User.swift */,
+				0F5DAE62213FDFF300320BB9 /* Game.swift */,
+				0F5DAE64213FE1B300320BB9 /* Comment.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0F5DAE6C2140017F00320BB9 /* GameCell */ = {
+			isa = PBXGroup;
+			children = (
+				0F5DAE682140013D00320BB9 /* GameCell.swift */,
+				0F5DAE6A2140017B00320BB9 /* GameCell.xib */,
+			);
+			path = GameCell;
 			sourceTree = "<group>";
 		};
 		0FAF7224213EB1B90029E238 /* Login */ = {
@@ -213,6 +247,7 @@
 				0F23A745213EADE7005FC997 /* LaunchScreen.storyboard in Resources */,
 				0F23A742213EADE7005FC997 /* Assets.xcassets in Resources */,
 				0F23A740213EADE5005FC997 /* Main.storyboard in Resources */,
+				0F5DAE6B2140017B00320BB9 /* GameCell.xib in Resources */,
 				0FAF722F213EBD100029E238 /* Home.storyboard in Resources */,
 				0F5DAE57213ECFD400320BB9 /* UpdateProfile.storyboard in Resources */,
 				0F5DAE5C213ED36400320BB9 /* DetailGame.storyboard in Resources */,
@@ -276,8 +311,13 @@
 				0FAF7226213EB3740029E238 /* CreateAccountVC.swift in Sources */,
 				0F5DAE54213ECEC200320BB9 /* UpdateProfileVC.swift in Sources */,
 				0F23A73B213EADE5005FC997 /* AppDelegate.swift in Sources */,
+				0F5DAE63213FDFF300320BB9 /* Game.swift in Sources */,
+				0F5DAE65213FE1B300320BB9 /* Comment.swift in Sources */,
 				0FAF7233213EBFB60029E238 /* SearchVC.swift in Sources */,
+				0F5DAE5E213FDCED00320BB9 /* SessionManager.swift in Sources */,
 				0F5DAE59213ED33700320BB9 /* DetailGameVC.swift in Sources */,
+				0F5DAE60213FDF0E00320BB9 /* User.swift in Sources */,
+				0F5DAE692140013D00320BB9 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

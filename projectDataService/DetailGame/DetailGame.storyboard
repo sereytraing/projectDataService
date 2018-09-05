@@ -14,7 +14,7 @@
         <!--Detail GameVC-->
         <scene sceneID="I5l-E7-fR9">
             <objects>
-                <viewController id="c3a-dm-N8a" customClass="DetailGameVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailGameVC" id="c3a-dm-N8a" customClass="DetailGameVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4M7-Z5-4W0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

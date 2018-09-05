@@ -10,6 +10,9 @@ import UIKit
 
 class HomeVC: DefaultVC {
 
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var searchView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

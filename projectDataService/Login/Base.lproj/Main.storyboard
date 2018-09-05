@@ -14,7 +14,7 @@
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,6 +43,7 @@
                                 <state key="normal" title="Créer un compte"/>
                                 <connections>
                                     <action selector="createClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ih-QI-Tky"/>
+                                    <segue destination="qZ9-ws-sO8" kind="show" id="taE-0m-Pju"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,7 +75,7 @@
         <!--Create AccountVC-->
         <scene sceneID="Get-gs-XW4">
             <objects>
-                <viewController id="qZ9-ws-sO8" customClass="CreateAccountVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountVC" id="qZ9-ws-sO8" customClass="CreateAccountVC" customModule="projectDataService" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hCL-f7-tzx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,23 +93,49 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-XW-PAX">
-                                <rect key="frame" x="118" y="170" width="139" height="30"/>
+                                <rect key="frame" x="118" y="637" width="139" height="30"/>
                                 <state key="normal" title="CRÉER UN COMPTE"/>
                                 <connections>
                                     <action selector="createClicked:" destination="qZ9-ws-sO8" eventType="touchUpInside" id="YWo-0r-i8F"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Numéro de téléphone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l9l-p3-o7j">
+                                <rect key="frame" x="94" y="190" width="187.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ville" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-sP-2yz">
+                                <rect key="frame" x="94" y="230" width="187.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtO-NE-6EA">
+                                <rect key="frame" x="148.5" y="270" width="77.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zAz-yA-yTe" firstAttribute="top" secondItem="xWl-cM-sug" secondAttribute="top" constant="50" id="29L-hR-e9q"/>
                             <constraint firstItem="5cZ-X2-jnS" firstAttribute="width" secondItem="zAz-yA-yTe" secondAttribute="width" id="9cT-QT-brS"/>
+                            <constraint firstItem="xWl-cM-sug" firstAttribute="bottom" secondItem="YcW-XW-PAX" secondAttribute="bottom" id="CP6-U5-Dlm"/>
                             <constraint firstItem="5cZ-X2-jnS" firstAttribute="top" secondItem="zAz-yA-yTe" secondAttribute="bottom" constant="10" id="DzB-Im-SzS"/>
-                            <constraint firstItem="YcW-XW-PAX" firstAttribute="top" secondItem="5cZ-X2-jnS" secondAttribute="bottom" constant="30" id="Pot-6C-Yho"/>
+                            <constraint firstItem="QtO-NE-6EA" firstAttribute="top" secondItem="ga9-sP-2yz" secondAttribute="bottom" constant="10" id="EAm-3c-Cft"/>
+                            <constraint firstItem="ga9-sP-2yz" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="Jfv-RE-5mq"/>
+                            <constraint firstItem="l9l-p3-o7j" firstAttribute="top" secondItem="5cZ-X2-jnS" secondAttribute="bottom" constant="50" id="LVt-23-pSQ"/>
+                            <constraint firstItem="l9l-p3-o7j" firstAttribute="width" secondItem="zAz-yA-yTe" secondAttribute="width" id="POD-hh-CJU"/>
+                            <constraint firstItem="QtO-NE-6EA" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="Tpv-ec-57a"/>
                             <constraint firstItem="zAz-yA-yTe" firstAttribute="width" secondItem="hCL-f7-tzx" secondAttribute="width" multiplier="0.5" id="ZrD-Nk-4j2"/>
+                            <constraint firstItem="l9l-p3-o7j" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="bxt-8w-hRO"/>
                             <constraint firstItem="zAz-yA-yTe" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="cqN-QT-DJW"/>
                             <constraint firstItem="YcW-XW-PAX" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="hiG-eY-aNt"/>
                             <constraint firstItem="5cZ-X2-jnS" firstAttribute="centerX" secondItem="hCL-f7-tzx" secondAttribute="centerX" id="jhT-4e-Sx0"/>
+                            <constraint firstItem="ga9-sP-2yz" firstAttribute="top" secondItem="l9l-p3-o7j" secondAttribute="bottom" constant="10" id="lPa-mY-UH5"/>
+                            <constraint firstItem="ga9-sP-2yz" firstAttribute="width" secondItem="zAz-yA-yTe" secondAttribute="width" id="xLe-iQ-gu2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xWl-cM-sug"/>
                     </view>
@@ -120,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bk7-Ef-YTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="940" y="32"/>
+            <point key="canvasLocation" x="1134" y="69"/>
         </scene>
     </scenes>
 </document>
