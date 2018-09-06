@@ -14,11 +14,15 @@ class ProfileVC: DefaultVC {
     @IBOutlet weak var telephoneLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var myGameCollectionView: UICollectionView!
+    @IBOutlet weak var editProfileButtonView: UIView!
+    
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.editProfileButtonView.layer.cornerRadius = 20.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,5 +31,12 @@ class ProfileVC: DefaultVC {
     
     @IBAction func showAllComments(_ sender: Any) {
         
+    }
+    
+    @IBAction func showEditProfile(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "UpdateProfile", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "UpdateProfileVC") as? UpdateProfileVC {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

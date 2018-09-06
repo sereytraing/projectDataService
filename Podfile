@@ -9,5 +9,6 @@ target 'projectDataService' do
 	pod 'Alamofire'
     pod 'AlamofireObjectMapper'
     pod 'ObjectMapper'
-
+    pod 'DropDown'
+    
 end

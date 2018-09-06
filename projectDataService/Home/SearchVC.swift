@@ -126,11 +126,10 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        /*let storyboard = UIStoryboard(name: "DetailFish", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "DetailFishVC") as? DetailFishVC {
-            controller.fish = self.fishes[indexPath.row]
+        let storyboard = UIStoryboard(name: "DetailGame", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "DetailGameVC") as? DetailGameVC {
             self.navigationController?.pushViewController(controller, animated: true)
-        }*/
+        }
     }
 }
 

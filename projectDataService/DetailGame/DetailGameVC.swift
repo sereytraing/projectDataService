@@ -27,6 +27,7 @@ class DetailGameVC: DefaultVC {
     }
     
     @IBAction func showListUser(_ sender: Any) {
+        
     }
     
     @IBAction func addListClicked(_ sender: Any) {
