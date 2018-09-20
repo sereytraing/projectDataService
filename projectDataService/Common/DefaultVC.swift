@@ -11,12 +11,9 @@ import Alamofire
 
 class DefaultVC: UIViewController {
 
-    let apiKey = "141ff21ff49305350dfc0017c9255329"
     let baseUrlIGDB = "https://api-endpoint.igdb.com"
     let baseUrl = "https://pacific-woodland-26831.herokuapp.com"
     
-    let headerIGDB: HTTPHeaders = ["Accept": "application/json",
-                                   "user-key": "141ff21ff49305350dfc0017c9255329"]
     let header: HTTPHeaders = ["Content-Type": "application/json"]
     
     override func viewDidLoad() {

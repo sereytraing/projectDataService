@@ -16,16 +16,18 @@ class User : Mappable{
     var city: String?
     var games: [Game]?
     var comments: [Comment]?
+    var genre: Int?
     
     required init?(map: Map){
     }
     
     func mapping(map: Map) {
-        username <- map["username"]
+        username <- map["mail"]
         id <- map["_id"]
         phone <- map["phone"]
         city <- map["city"]
         games <- map["games"]
         comments <- map["comments"]
+        genre <- map["genre"]
     }
 }

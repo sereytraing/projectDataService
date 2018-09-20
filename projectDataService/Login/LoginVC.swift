@@ -16,9 +16,12 @@ class LoginVC: DefaultVC {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.containerView.layer.cornerRadius = 10.0
+        self.connectButton.layer.cornerRadius = 20.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +31,7 @@ class LoginVC: DefaultVC {
     func requestLogin(username: String, password: String) {
         let url = self.baseUrl + "/auth/login"
         let parameters = [
-            "username": username,
+            "mail": username,
             "password": password
             ] as [String : Any]
         
@@ -38,7 +41,7 @@ class LoginVC: DefaultVC {
             case .success:
                 if let token = response.result.value {
                     SessionManager.GetInstance().setToken(token: token)
-                    self.requestGetProfile(token: token, username: username)
+                    self.requestGetProfile(token: token)
                 }
                 
             case .failure:
@@ -56,17 +59,18 @@ class LoginVC: DefaultVC {
         })
     }
     
-    func requestGetProfile(token: String, username: String) {
+    func requestGetProfile(token: String) {
         let headerToken: HTTPHeaders = ["Content-Type": "application/json",
                                         "Authorization": token]
         
-        let url = self.baseUrl + "/users/username/" + username
+        let url = self.baseUrl + "/users/"
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseObject(completionHandler: { (response: DataResponse<User>) in
             switch response.result {
             case .success:
                 if let user = response.result.value {
-                    if let id = user.id {
+                    if let id = user.id, let genre = user.genre {
                         SessionManager.GetInstance().setId(id: id)
+                        SessionManager.GetInstance().setRecommendationGenre(genre: genre)
                     }
                     //self.activityIndicator.stopAnimating()
                     let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav") as! UINavigationController
@@ -89,16 +93,11 @@ class LoginVC: DefaultVC {
     }
     
     @IBAction func connectClicked(_ sender: Any) {
-        let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav") as! UINavigationController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = homeVC
-        guard let window = UIApplication.shared.keyWindow else {
-            return
+        if let username = self.usernameTextField.text, !username.isEmpty {
+            if let password = self.passwordTextField.text, !password.isEmpty {
+                self.requestLogin(username: username, password: password)
+            }
         }
-        
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = homeVC
-        }, completion: { _ in })
     }
     
     @IBAction func createClicked(_ sender: Any) {

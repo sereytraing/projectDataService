@@ -20,6 +20,7 @@ public class SessionManager {
     
     let token: String = "token"
     let id: String = "id"
+    let recommendationGenre: String = "recommendationGenre"
     let defaults = UserDefaults.standard
     
     func setToken(token: String) {
@@ -38,8 +39,17 @@ public class SessionManager {
         return defaults.string(forKey: self.id)
     }
     
+    func setRecommendationGenre(genre: Int) {
+        defaults.set(genre, forKey: self.recommendationGenre)
+    }
+    
+    func getRecommendationGenre() -> Int? {
+        return defaults.integer(forKey: self.recommendationGenre)
+    }
+    
     func flush() {
         defaults.removeObject(forKey: self.token)
         defaults.removeObject(forKey: self.id)
+        defaults.removeObject(forKey: self.recommendationGenre)
     }
 }

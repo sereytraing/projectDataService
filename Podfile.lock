@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (4.7.2)
-  - AlamofireObjectMapper (5.0.0):
+  - Alamofire (4.7.3)
+  - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.0)
+    - ObjectMapper (~> 3.3)
   - DropDown (2.3.2)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -20,10 +20,10 @@ SPEC REPOS:
     - ObjectMapper
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
 
 PODFILE CHECKSUM: 42a7b033423f4ab3d836ab4e5d0a46e497525053
 

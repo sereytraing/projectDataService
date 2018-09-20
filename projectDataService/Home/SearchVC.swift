@@ -36,8 +36,15 @@ class SearchVC: DefaultVC {
     
     func requestGetRecommendation() {
         //CHANGER LE GENRE AVEC CELUI DU USER
-        let url = self.baseUrlIGDB + "/games/?fields=id,name,publishers,cover,summary,genres&filter[genres][eq]=4&limit=20&order=popularity:desc"
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.headerIGDB).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
+        //let url = self.baseUrlIGDB + "/games/?fields=id,name,publishers,cover,summary,genres&filter[genres][eq]=4&limit=20&order=popularity:desc"
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        var url = self.baseUrl + "/games/genre/4"
+        if let genreId = SessionManager.GetInstance().getRecommendationGenre() {
+            url = self.baseUrl + "/games/genre/\(genreId)"
+        }
+        
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
             if response.response?.statusCode == 401 {
                 self.logOut()
             } else {
@@ -62,8 +69,9 @@ class SearchVC: DefaultVC {
     }
     
     func requestGetGames(text: String) {
-        let url = self.baseUrlIGDB + "/games/?search=\(text)&fields=id,name,cover&limit=50&order=popularity:desc"
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.headerIGDB).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
+        //let url = self.baseUrlIGDB + "/games/?search=\(text)&fields=id,name,cover&limit=50&order=popularity:desc"
+        let url = self.baseUrl + "/games/allword/\(text)"
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.header).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
             if response.response?.statusCode == 401 {
                 self.logOut()
             } else {
@@ -118,7 +126,9 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 if let picture = self.games[indexPath.row].urlCover {
                     gameCell.bindData(name: self.games[indexPath.row].name!, imageUrl: picture)
                 } else {
-                    gameCell.bindData(name: self.games[indexPath.row].name!)
+                    if let name = self.games[indexPath.row].name {
+                        gameCell.bindData(name: name)
+                    }
                 }
             }
         }
@@ -128,6 +138,11 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "DetailGame", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "DetailGameVC") as? DetailGameVC {
+            if let text = self.searchTextField.text, text.isEmpty {
+                controller.game = self.gamesRecommendation[indexPath.item]
+            } else {
+                controller.game = self.games[indexPath.item]
+            }
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -146,6 +161,8 @@ extension SearchVC: UICollectionViewDelegateFlowLayout {
 
 extension SearchVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.games = []
+        self.collectionView.reloadData()
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(
             timeInterval: 0.5,

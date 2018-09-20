@@ -17,11 +17,32 @@ class DetailGameVC: DefaultVC {
     @IBOutlet weak var askLoanButton: UIButton!
     @IBOutlet weak var addListButton: UIButton!
     
+    var game: Game?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setupGame()
     }
 
+    func setupGame() {
+        if let game = self.game {
+            self.descriptionLabel.text = game.description
+            self.editorLabel.text = "\(game.publishers?.first)"
+            self.genreLabel.text = "\(game.genres?.first)"
+            
+            let arr = game.urlCover?.components(separatedBy: "/")
+            var tmp = ""
+            if let value = arr?.last {
+                tmp = "https://images.igdb.com/igdb/image/upload/t_cover_small_2x/" + value
+            }
+            
+            if let url = URL(string: tmp) {
+                let data = try? Data(contentsOf: url)
+                self.imageView.image = UIImage(data: data!)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

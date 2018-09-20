@@ -18,6 +18,8 @@ class HomeVC: DefaultVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buttonView.layer.cornerRadius = 30.0
+        self.profileView.layer.cornerRadius = 10.0
+        self.searchView.layer.cornerRadius = 10.0
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F051AEE2141A23B004A8986 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F051AEC2141A23B004A8986 /* UserCell.swift */; };
+		0F051AEF2141A23B004A8986 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F051AED2141A23B004A8986 /* UserCell.xib */; };
 		0F23A73B213EADE5005FC997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F23A73A213EADE5005FC997 /* AppDelegate.swift */; };
 		0F23A740213EADE5005FC997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F23A73E213EADE5005FC997 /* Main.storyboard */; };
 		0F23A742213EADE7005FC997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F23A741213EADE7005FC997 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F051AEC2141A23B004A8986 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		0F051AED2141A23B004A8986 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		0F23A737213EADE5005FC997 /* projectDataService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = projectDataService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F23A73A213EADE5005FC997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F23A73F213EADE5005FC997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F051AF02141A240004A8986 /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				0F051AEC2141A23B004A8986 /* UserCell.swift */,
+				0F051AED2141A23B004A8986 /* UserCell.xib */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
 		0F23A72E213EADE5005FC997 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +171,7 @@
 			children = (
 				0F5DAE6C2140017F00320BB9 /* GameCell */,
 				0F9BD9A3214155BC008AD281 /* CommentCell */,
+				0F051AF02141A240004A8986 /* UserCell */,
 				0FAF7220213EB1970029E238 /* DefaultVC.swift */,
 				0F5DAE5D213FDCED00320BB9 /* SessionManager.swift */,
 			);
@@ -277,6 +291,7 @@
 				0F23A740213EADE5005FC997 /* Main.storyboard in Resources */,
 				0F9BD9A2214155B8008AD281 /* CommentCell.xib in Resources */,
 				0F5DAE6B2140017B00320BB9 /* GameCell.xib in Resources */,
+				0F051AEF2141A23B004A8986 /* UserCell.xib in Resources */,
 				0FAF722F213EBD100029E238 /* Home.storyboard in Resources */,
 				0F5DAE57213ECFD400320BB9 /* UpdateProfile.storyboard in Resources */,
 				0F5DAE5C213ED36400320BB9 /* DetailGame.storyboard in Resources */,
@@ -349,6 +364,7 @@
 				0FAF7233213EBFB60029E238 /* SearchVC.swift in Sources */,
 				0F5DAE5E213FDCED00320BB9 /* SessionManager.swift in Sources */,
 				0F5DAE59213ED33700320BB9 /* DetailGameVC.swift in Sources */,
+				0F051AEE2141A23B004A8986 /* UserCell.swift in Sources */,
 				0F5DAE6E2140264400320BB9 /* ListUserVC.swift in Sources */,
 				0F5DAE60213FDF0E00320BB9 /* User.swift in Sources */,
 				0F5DAE692140013D00320BB9 /* GameCell.swift in Sources */,
