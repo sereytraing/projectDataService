@@ -17,6 +17,7 @@ class LoginVC: DefaultVC {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,9 @@ class LoginVC: DefaultVC {
     }
     
     func requestLogin(username: String, password: String) {
+        self.activityIndicator.startAnimating()
+        self.connectButton.isEnabled = false
+        
         let url = self.baseUrl + "/auth/login"
         let parameters = [
             "mail": username,
@@ -45,7 +49,8 @@ class LoginVC: DefaultVC {
                 }
                 
             case .failure:
-                //self.activityIndicator.stopAnimating()
+                self.activityIndicator.stopAnimating()
+                self.connectButton.isEnabled = true
                 if response.response?.statusCode == 404 {
                     self.okAlert(title: "Erreur", message: "Utilisateur non trouvé")
                 } else if response.response?.statusCode == 403 {
@@ -72,7 +77,8 @@ class LoginVC: DefaultVC {
                         SessionManager.GetInstance().setId(id: id)
                         SessionManager.GetInstance().setRecommendationGenre(genre: genre)
                     }
-                    //self.activityIndicator.stopAnimating()
+                    self.activityIndicator.stopAnimating()
+                    self.connectButton.isEnabled = true
                     let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNav") as! UINavigationController
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window?.rootViewController = homeVC
@@ -86,7 +92,8 @@ class LoginVC: DefaultVC {
                 }
                 
             case .failure:
-                //self.activityIndicator.stopAnimating()
+                self.activityIndicator.stopAnimating()
+                self.connectButton.isEnabled = true
                 self.okAlert(title: "Erreur", message: "Erreur Get Profile \(String(describing: response.response?.statusCode))")
             }
         })
@@ -96,7 +103,11 @@ class LoginVC: DefaultVC {
         if let username = self.usernameTextField.text, !username.isEmpty {
             if let password = self.passwordTextField.text, !password.isEmpty {
                 self.requestLogin(username: username, password: password)
+            } else {
+                self.okAlert(title: "Erreur", message: "Entrez un nom d'utilisateur et un mot de passe")
             }
+        } else {
+            self.okAlert(title: "Erreur", message: "Entrez un nom d'utilisateur et un mot de passe")
         }
     }
     

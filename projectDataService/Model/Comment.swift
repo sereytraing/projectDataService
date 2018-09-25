@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Comment : Mappable{
     var usernameFrom: String?
-    var id: String?
+    var id: Int?
     var rate: Int?
     var review: String?
     

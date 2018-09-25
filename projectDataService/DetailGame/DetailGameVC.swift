@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
 
 class DetailGameVC: DefaultVC {
 
@@ -18,17 +20,19 @@ class DetailGameVC: DefaultVC {
     @IBOutlet weak var addListButton: UIButton!
     
     var game: Game?
+    var idGame: Int?
+    var genres = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupGame()
+        self.requestDetailGame()
     }
 
     func setupGame() {
         if let game = self.game {
             self.descriptionLabel.text = game.description
             self.editorLabel.text = "\(game.publishers?.first)"
-            self.genreLabel.text = "\(game.genres?.first)"
+            self.genreLabel.text = "\(self.genres.first)"
             
             let arr = game.urlCover?.components(separatedBy: "/")
             var tmp = ""
@@ -47,10 +51,84 @@ class DetailGameVC: DefaultVC {
         super.didReceiveMemoryWarning()
     }
     
+    func requestDetailGame() {
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        if let id = self.idGame {
+            let url = self.baseUrl + "/games/\(id)"
+            Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
+                if response.response?.statusCode == 401 {
+                    self.logOut()
+                } else {
+                    switch response.result {
+                    case .success:
+                        if let game = response.result.value {
+                            self.game = game.first
+                            self.requestAllGenre()
+                        }
+                        
+                    case .failure:
+                        self.okAlert(title: "Erreur", message: "Erreur Get Detail Game \(String(describing: response.response?.statusCode))")
+                    }
+                }
+            })
+        }
+    }
+    
+    func requestAddGameToList() {
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        
+        let url = self.baseUrl + "/games"
+        let parameters = [
+            "mail": "",
+            ] as [String : Any]
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headerToken).responseObject(completionHandler: { (response: DataResponse<Game>) in
+            switch response.result {
+            case .success:
+                self.okAlert(title: "Succès", message: "Ce jeu a été ajouté à votre liste")
+            case .failure:
+                self.okAlert(title: "Erreur", message: "Erreur \(String(describing: response.response?.statusCode))")
+            }
+        })
+    }
+    
+    func requestAllGenre() {
+        let url = self.baseUrl + "/genres/all"
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.header).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Genre]>) in
+            switch response.result {
+            case .success:
+                if let genres = response.result.value {
+                    if let gameGenres = self.game?.genres {
+                        for genre in genres {
+                            for gameGenre in gameGenres {
+                                if genre.idAPI == gameGenre {
+                                    self.genres.append(genre.name ?? "")
+                                }
+                            }
+                        }
+                    }
+                    self.setupGame()
+                }
+            case .failure:
+                self.okAlert(title: "Erreur", message: "Erreur Get Genre \(String(describing: response.response?.statusCode))")
+            }
+        })
+    }
+    
     @IBAction func showListUser(_ sender: Any) {
         
     }
     
     @IBAction func addListClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Veux-tu mettre ce jeu dans la liste des jeux pouvant être prêter ?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let yesAction = UIAlertAction(title: "Oui", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.requestAddGameToList()
+        }
+        alert.addAction(yesAction)
+        alert.addAction(UIAlertAction(title: "Non", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

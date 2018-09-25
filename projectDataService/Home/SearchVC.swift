@@ -70,8 +70,11 @@ class SearchVC: DefaultVC {
     
     func requestGetGames(text: String) {
         //let url = self.baseUrlIGDB + "/games/?search=\(text)&fields=id,name,cover&limit=50&order=popularity:desc"
-        let url = self.baseUrl + "/games/allword/\(text)"
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.header).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        
+        let url = self.baseUrl + "/games/word/\(text)"
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
             if response.response?.statusCode == 401 {
                 self.logOut()
             } else {
@@ -87,7 +90,7 @@ class SearchVC: DefaultVC {
                         self.games = []
                         self.collectionView.reloadData()
                     } else {
-                        self.okAlert(title: "Erreur", message: "Erreur Get Recommendation \(String(describing: response.response?.statusCode))")
+                        self.okAlert(title: "Erreur", message: "Erreur Get Game Search \(String(describing: response.response?.statusCode))")
                     }
                 }
                 self.activityIndicator.stopAnimating()
@@ -139,9 +142,9 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let storyboard = UIStoryboard(name: "DetailGame", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "DetailGameVC") as? DetailGameVC {
             if let text = self.searchTextField.text, text.isEmpty {
-                controller.game = self.gamesRecommendation[indexPath.item]
+                controller.idGame = self.gamesRecommendation[indexPath.item].idIGDB
             } else {
-                controller.game = self.games[indexPath.item]
+                controller.idGame = self.games[indexPath.item].idIGDB
             }
             self.navigationController?.pushViewController(controller, animated: true)
         }

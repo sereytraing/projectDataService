@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,12 +107,18 @@
                                     <constraint firstAttribute="trailing" secondItem="6I5-Ub-wtc" secondAttribute="trailing" constant="10" id="zRg-H7-Bbg"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wZR-Qc-Jc3">
+                                <rect key="frame" x="169" y="387.66666666666669" width="37" height="37"/>
+                                <color key="color" red="1" green="0.66274509800000003" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FJ6-F8-idz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5aT-KX-J93"/>
                             <constraint firstItem="FJ6-F8-idz" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="BIj-Rf-ZIG"/>
                             <constraint firstItem="FJ6-F8-idz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.1" id="JUr-wW-cfp"/>
+                            <constraint firstItem="wZR-Qc-Jc3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N9Q-en-9iF"/>
+                            <constraint firstItem="wZR-Qc-Jc3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yb3-ze-8Di"/>
                             <constraint firstItem="YCn-gt-b4G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dYh-B8-1V2"/>
                             <constraint firstItem="YCn-gt-b4G" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hQA-pG-oaL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YCn-gt-b4G" secondAttribute="trailing" id="s8N-6d-apz"/>
@@ -122,6 +127,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="wZR-Qc-Jc3" id="eHY-x1-UO7"/>
                         <outlet property="connectButton" destination="nFe-xY-5K8" id="ALN-Zv-5UA"/>
                         <outlet property="containerView" destination="FJ6-F8-idz" id="Ini-Nd-zAd"/>
                         <outlet property="createAccountButton" destination="ROh-Dp-liO" id="qKg-xe-ybi"/>
@@ -145,7 +151,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vI9-Lk-R18">
-                                <rect key="frame" x="43" y="127.33333333333331" width="288.33333333333331" height="405.99999999999994"/>
+                                <rect key="frame" x="43" y="127.33333333333331" width="289" height="405.99999999999994"/>
                                 <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom d'utilisateur" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zAz-yA-yTe">
@@ -184,7 +190,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhm-nF-4d5">
-                                <rect key="frame" x="56" y="296.33333333333331" width="262" height="1"/>
+                                <rect key="frame" x="56.333333333333343" y="296.33333333333331" width="262.33333333333326" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="K5x-5s-Ken"/>
@@ -197,7 +203,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vv-hc-m8Y">
-                                <rect key="frame" x="56" y="336.33333333333331" width="262" height="1"/>
+                                <rect key="frame" x="56.333333333333343" y="336.33333333333331" width="262.33333333333326" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mJg-Z7-16G"/>

@@ -31,12 +31,12 @@ public class SessionManager {
         return defaults.string(forKey: self.token)
     }
     
-    func setId(id: String) {
+    func setId(id: Int) {
         defaults.set(id, forKey: self.id)
     }
     
-    func getId() -> String? {
-        return defaults.string(forKey: self.id)
+    func getId() -> Int? {
+        return defaults.integer(forKey: self.id)
     }
     
     func setRecommendationGenre(genre: Int) {

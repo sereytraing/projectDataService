@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
 
 class ListUserVC: DefaultVC {
 
@@ -24,6 +26,20 @@ class ListUserVC: DefaultVC {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func requestListUserForGame() {
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        var url = self.baseUrl + "/games/genre/4"
+
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
+            if response.response?.statusCode == 401 {
+                self.logOut()
+            } else {
+
+            }
+        })
     }
 }
 

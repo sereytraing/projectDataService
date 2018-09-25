@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Game : Mappable{
     var idIGDB: Int?
-    var id: String?
+    var id: Int?
     var name: String?
     var description: String?
     var urlCover: String?
@@ -25,7 +25,7 @@ class Game : Mappable{
     
     func mapping(map: Map) {
         idIGDB <- map["id"]
-        id <- map["idNOTREAPI"]
+        id <- map["idapi"]
         name <- map["name"]
         description <- map["summary"]
         urlCover <- map["cover.url"]

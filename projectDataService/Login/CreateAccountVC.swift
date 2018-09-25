@@ -23,10 +23,14 @@ class CreateAccountVC: DefaultVC {
     @IBOutlet weak var containerView: UIView!
     
     let dropDown = DropDown()
+    var genres = [Genre]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.requestAllGenre()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupDropDown()
         self.containerView.layer.cornerRadius = 10.0
         self.createButton.layer.cornerRadius = 20.0
     }
@@ -42,15 +46,18 @@ class CreateAccountVC: DefaultVC {
             let phone = self.phoneTextField.text,
             !username.isEmpty && !password.isEmpty && !city.isEmpty && !phone.isEmpty
         {
-            self.requestCreateAccount(username: username, password: password, city: city, phone: phone, genre: 21)
+            if self.dropDown.selectedItem != "-" {
+                let indexSelected = self.dropDown.indexForSelectedRow
+                self.requestCreateAccount(username: username, password: password, city: city, phone: phone, genre: self.genres[indexSelected ?? 0].idAPI ?? 4)
+            }
         } else {
             self.okAlert(title: "Erreur", message: "Veuillez saisir tous les champs")
         }
     }
     
-    func setupDropDown() {
+    func setupDropDown(genresName: [String]) {
         self.dropDown.anchorView = self.dropDownView
-        self.dropDown.dataSource = ["1", "2", "3"]
+        self.dropDown.dataSource = genresName
         self.dropDown.selectionAction = { [weak self] (index, item) in
             self?.genreButtonFirst.setTitle(item, for: .normal)
         }
@@ -64,7 +71,7 @@ class CreateAccountVC: DefaultVC {
             "password": password,
             "city": city,
             "phone": phone,
-            "genre": 21
+            "genre": genre
             ] as [String : Any]
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.header).responseObject(completionHandler: { (response: DataResponse<User>) in
@@ -82,6 +89,22 @@ class CreateAccountVC: DefaultVC {
         })
     }
     
+    func requestAllGenre() {
+        let url = self.baseUrl + "/genres/all"
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.header).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Genre]>) in
+            switch response.result {
+            case .success:
+                self.genres = response.result.value ?? []
+                var genresName = [String]()
+                for genre in self.genres {
+                    genresName.append(genre.name ?? "-")
+                }
+                self.setupDropDown(genresName: genresName)
+            case .failure:
+                self.okAlert(title: "Erreur", message: "Erreur Get Genre \(String(describing: response.response?.statusCode))")
+            }
+        })
+    }
     
     @IBAction func genreFirstClicked(_ sender: Any) {
         self.dropDown.show()

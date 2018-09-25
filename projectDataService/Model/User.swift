@@ -11,7 +11,7 @@ import ObjectMapper
 
 class User : Mappable{
     var username: String?
-    var id: String?
+    var id: Int?
     var phone: String?
     var city: String?
     var games: [Game]?
@@ -23,11 +23,11 @@ class User : Mappable{
     
     func mapping(map: Map) {
         username <- map["mail"]
-        id <- map["_id"]
+        id <- map["iduser"]
         phone <- map["phone"]
         city <- map["city"]
         games <- map["games"]
         comments <- map["comments"]
-        genre <- map["genre"]
+        genre <- map["genre_idgenre"]
     }
 }
