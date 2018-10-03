@@ -22,6 +22,7 @@ class SearchVC: DefaultVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "GameCell", bundle:nil) , forCellWithReuseIdentifier: "gameCell")

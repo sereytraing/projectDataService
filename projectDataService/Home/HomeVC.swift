@@ -20,10 +20,21 @@ class HomeVC: DefaultVC {
         self.buttonView.layer.cornerRadius = 30.0
         self.profileView.layer.cornerRadius = 10.0
         self.searchView.layer.cornerRadius = 10.0
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     @IBAction func switchClicked(_ sender: Any) {

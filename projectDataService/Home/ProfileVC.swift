@@ -32,13 +32,14 @@ class ProfileVC: DefaultVC {
         self.myGameCollectionView.dataSource = self
         self.myGameCollectionView.register(UINib(nibName: "GameCell", bundle:nil) , forCellWithReuseIdentifier: "gameCell")
         self.editProfileButtonView.layer.cornerRadius = 20.0
-        
+        self.commentButtonView.layer.cornerRadius = 20.0
         self.editProfileButtonView.isHidden = !self.isFromHome
-        self.commentButtonView.isHidden = !self.isFromHome
+        self.commentButtonView.isHidden = self.isFromHome
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor(rgb: 0xEBEDFB)
         if self.isFromHome {
             self.requestGetProfile()
         } else {

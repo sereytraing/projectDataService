@@ -12,8 +12,10 @@ import AlamofireObjectMapper
 
 class DetailGameVC: DefaultVC {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var editorLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var askLoanButton: UIButton!
@@ -27,6 +29,8 @@ class DetailGameVC: DefaultVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.requestDetailGame()
+        self.askLoanButton.layer.cornerRadius = 20.0
+        self.addListButton.layer.cornerRadius = 20.0
     }
 
     func setupGame() {
@@ -44,6 +48,7 @@ class DetailGameVC: DefaultVC {
             if let url = URL(string: tmp) {
                 let data = try? Data(contentsOf: url)
                 self.imageView.image = UIImage(data: data!)
+                self.backgroundImageView.image = UIImage(data: data!)
             }
         }
     }
@@ -53,6 +58,7 @@ class DetailGameVC: DefaultVC {
     }
     
     func requestDetailGame() {
+        self.activityIndicator.startAnimating()
         let headerToken: HTTPHeaders = ["Content-Type": "application/json",
                                         "Authorization": SessionManager.GetInstance().getToken()!]
         if let id = self.idGame {
@@ -65,10 +71,12 @@ class DetailGameVC: DefaultVC {
                     case .success:
                         if let game = response.result.value {
                             self.game = game.first
+                            self.title = game.first?.name
                             self.requestAllGenre()
                         }
                         
                     case .failure:
+                        self.activityIndicator.stopAnimating()
                         self.okAlert(title: "Erreur", message: "Erreur Get Detail Game \(String(describing: response.response?.statusCode))")
                     }
                 }
@@ -87,16 +95,15 @@ class DetailGameVC: DefaultVC {
                 "description": game.description,
                 "idapi": game.idIGDB,
                 "urlcover": game.urlCover,
-                "publisher": 4,
+                "publisher": game.publishers?.first,
                 "lended": false
                 ] as [String : Any]
             
             Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headerToken).responseObject(completionHandler: { (response: DataResponse<Game>) in
-                print(response.response?.statusCode)
-                switch response.result {
-                case .success:
+                
+                if response.response?.statusCode == 200 {
                     self.okAlert(title: "Succès", message: "Ce jeu a été ajouté à votre liste")
-                case .failure:
+                } else {
                     self.okAlert(title: "Erreur", message: "Erreur \(String(describing: response.response?.statusCode))")
                 }
             })
@@ -124,6 +131,7 @@ class DetailGameVC: DefaultVC {
                 }
             case .failure:
                 self.setupGame()
+                self.activityIndicator.stopAnimating()
                 self.okAlert(title: "Erreur", message: "Erreur Get Genre \(String(describing: response.response?.statusCode))")
             }
         })
@@ -139,10 +147,12 @@ class DetailGameVC: DefaultVC {
                 case .success:
                     if let publishers = response.result.value {
                         self.publishers.append(publishers.first?.name ?? "")
+                        self.activityIndicator.stopAnimating()
                         self.setupGame()
                     }
                 case .failure:
                     self.setupGame()
+                    self.activityIndicator.stopAnimating()
                     self.okAlert(title: "Erreur", message: "Erreur Get Publishers \(String(describing: response.response?.statusCode))")
                 }
             })

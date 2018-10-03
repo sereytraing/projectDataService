@@ -34,6 +34,7 @@ extension AllCommentsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         cell.bindData(rate: self.comments[indexPath.row].rate ?? 0, review: self.comments[indexPath.row].review ?? "")
+        cell.selectionStyle = .none
         return cell
     }
     

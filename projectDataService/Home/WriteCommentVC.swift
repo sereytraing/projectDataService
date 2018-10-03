@@ -22,6 +22,7 @@ class WriteCommentVC: DefaultVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupDropDown()
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func submitClicked(_ sender: Any) {

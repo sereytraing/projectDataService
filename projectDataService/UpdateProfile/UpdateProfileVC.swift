@@ -27,6 +27,7 @@ class UpdateProfileVC: DefaultVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.requestAllGenre()
+        self.hideKeyboardWhenTappedAround()
     }
 
     func setupData() {

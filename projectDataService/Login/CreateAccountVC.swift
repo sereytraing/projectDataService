@@ -31,6 +31,7 @@ class CreateAccountVC: DefaultVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.containerView.layer.cornerRadius = 10.0
         self.createButton.layer.cornerRadius = 20.0
     }

@@ -39,11 +39,17 @@ class ListUserVC: DefaultVC {
                 if response.response?.statusCode == 401 {
                     self.logOut()
                 } else {
-                    print(response.response?.statusCode)
-                    print(response.error)
                     if let users = response.result.value {
-                        self.users = users
-                        self.tableView.reloadData()
+                        if users.isEmpty {
+                            let alert = UIAlertController(title: "Oups", message: "Personne ne prête ce jeu actuellement", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { _ in
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            self.users = users
+                            self.tableView.reloadData()
+                        }
                     } else {
                         let alert = UIAlertController(title: "Oups", message: "Personne ne prête ce jeu actuellement", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { _ in

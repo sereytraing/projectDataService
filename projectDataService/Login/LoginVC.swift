@@ -21,6 +21,7 @@ class LoginVC: DefaultVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.containerView.layer.cornerRadius = 10.0
         self.connectButton.layer.cornerRadius = 20.0
     }
