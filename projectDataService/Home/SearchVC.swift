@@ -28,7 +28,6 @@ class SearchVC: DefaultVC {
         self.collectionView.register(UINib(nibName: "GameCell", bundle:nil) , forCellWithReuseIdentifier: "gameCell")
         self.requestGetRecommendation()
         self.searchTextField.delegate = self
-        //self.searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,8 +35,6 @@ class SearchVC: DefaultVC {
     }
     
     func requestGetRecommendation() {
-        //CHANGER LE GENRE AVEC CELUI DU USER
-        //let url = self.baseUrlIGDB + "/games/?fields=id,name,publishers,cover,summary,genres&filter[genres][eq]=4&limit=20&order=popularity:desc"
         let headerToken: HTTPHeaders = ["Content-Type": "application/json",
                                         "Authorization": SessionManager.GetInstance().getToken()!]
         var url = self.baseUrl + "/games/genre/4"
@@ -70,7 +67,6 @@ class SearchVC: DefaultVC {
     }
     
     func requestGetGames(text: String) {
-        //let url = self.baseUrlIGDB + "/games/?search=\(text)&fields=id,name,cover&limit=50&order=popularity:desc"
         let headerToken: HTTPHeaders = ["Content-Type": "application/json",
                                         "Authorization": SessionManager.GetInstance().getToken()!]
         
