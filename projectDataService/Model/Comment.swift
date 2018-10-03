@@ -21,7 +21,7 @@ class Comment : Mappable{
     func mapping(map: Map) {
         usernameFrom <- map["username"]
         id <- map["_id"]
-        rate <- map["rate"]
+        rate <- map["mark"]
         review <- map["review"]
     }
 }

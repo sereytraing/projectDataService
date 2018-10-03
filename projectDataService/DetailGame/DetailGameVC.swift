@@ -22,6 +22,7 @@ class DetailGameVC: DefaultVC {
     var game: Game?
     var idGame: Int?
     var genres = [String]()
+    var publishers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +32,8 @@ class DetailGameVC: DefaultVC {
     func setupGame() {
         if let game = self.game {
             self.descriptionLabel.text = game.description
-            self.editorLabel.text = "\(game.publishers?.first)"
-            self.genreLabel.text = "\(self.genres.first)"
+            self.editorLabel.text = self.publishers.first
+            self.genreLabel.text = self.genres.first
             
             let arr = game.urlCover?.components(separatedBy: "/")
             var tmp = ""
@@ -76,27 +77,37 @@ class DetailGameVC: DefaultVC {
     }
     
     func requestAddGameToList() {
-        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
-                                        "Authorization": SessionManager.GetInstance().getToken()!]
-        
-        let url = self.baseUrl + "/games"
-        let parameters = [
-            "mail": "",
-            ] as [String : Any]
-        
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headerToken).responseObject(completionHandler: { (response: DataResponse<Game>) in
-            switch response.result {
-            case .success:
-                self.okAlert(title: "Succès", message: "Ce jeu a été ajouté à votre liste")
-            case .failure:
-                self.okAlert(title: "Erreur", message: "Erreur \(String(describing: response.response?.statusCode))")
-            }
-        })
+        if let game = self.game {
+            let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                            "Authorization": SessionManager.GetInstance().getToken()!]
+            
+            let url = self.baseUrl + "/games/"
+            let parameters = [
+                "name": game.name,
+                "description": game.description,
+                "idapi": game.idIGDB,
+                "urlcover": game.urlCover,
+                "publisher": 4,
+                "lended": false
+                ] as [String : Any]
+            
+            Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headerToken).responseObject(completionHandler: { (response: DataResponse<Game>) in
+                print(response.response?.statusCode)
+                switch response.result {
+                case .success:
+                    self.okAlert(title: "Succès", message: "Ce jeu a été ajouté à votre liste")
+                case .failure:
+                    self.okAlert(title: "Erreur", message: "Erreur \(String(describing: response.response?.statusCode))")
+                }
+            })
+        }
     }
     
     func requestAllGenre() {
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
         let url = self.baseUrl + "/genres/all"
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: self.header).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Genre]>) in
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Genre]>) in
             switch response.result {
             case .success:
                 if let genres = response.result.value {
@@ -109,16 +120,42 @@ class DetailGameVC: DefaultVC {
                             }
                         }
                     }
-                    self.setupGame()
+                    self.requestAllPublishers()
                 }
             case .failure:
+                self.setupGame()
                 self.okAlert(title: "Erreur", message: "Erreur Get Genre \(String(describing: response.response?.statusCode))")
             }
         })
     }
     
-    @IBAction func showListUser(_ sender: Any) {
+    func requestAllPublishers() {
+        let headerToken: HTTPHeaders = ["Content-Type": "application/json",
+                                        "Authorization": SessionManager.GetInstance().getToken()!]
+        if let publi = self.game?.publishers?.first {
+            let url = self.baseUrl + "/games/publisher/\(publi!)"
+            Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Genre]>) in
+                switch response.result {
+                case .success:
+                    if let publishers = response.result.value {
+                        self.publishers.append(publishers.first?.name ?? "")
+                        self.setupGame()
+                    }
+                case .failure:
+                    self.setupGame()
+                    self.okAlert(title: "Erreur", message: "Erreur Get Publishers \(String(describing: response.response?.statusCode))")
+                }
+            })
+        }
         
+    }
+    
+    @IBAction func showListUser(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "DetailGame", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ListUserVC") as? ListUserVC {
+            controller.idGame = self.idGame
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @IBAction func addListClicked(_ sender: Any) {

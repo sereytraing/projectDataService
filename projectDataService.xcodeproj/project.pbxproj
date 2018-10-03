@@ -25,6 +25,7 @@
 		0F5DAE692140013D00320BB9 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE682140013D00320BB9 /* GameCell.swift */; };
 		0F5DAE6B2140017B00320BB9 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5DAE6A2140017B00320BB9 /* GameCell.xib */; };
 		0F5DAE6E2140264400320BB9 /* ListUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAE6D2140264400320BB9 /* ListUserVC.swift */; };
+		0F8F405B2163A77000380D8A /* WriteCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F405A2163A77000380D8A /* WriteCommentVC.swift */; };
 		0F9BD99E214154DA008AD281 /* AllCommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BD99D214154DA008AD281 /* AllCommentsVC.swift */; };
 		0F9BD9A1214155B8008AD281 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BD99F214155B8008AD281 /* CommentCell.swift */; };
 		0F9BD9A2214155B8008AD281 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9BD9A0214155B8008AD281 /* CommentCell.xib */; };
@@ -59,6 +60,7 @@
 		0F5DAE682140013D00320BB9 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		0F5DAE6A2140017B00320BB9 /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		0F5DAE6D2140264400320BB9 /* ListUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserVC.swift; sourceTree = "<group>"; };
+		0F8F405A2163A77000380D8A /* WriteCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentVC.swift; sourceTree = "<group>"; };
 		0F9BD99D214154DA008AD281 /* AllCommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommentsVC.swift; sourceTree = "<group>"; };
 		0F9BD99F214155B8008AD281 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		0F9BD9A0214155B8008AD281 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				0FAF7230213EBE430029E238 /* ProfileVC.swift */,
 				0FAF7232213EBFB60029E238 /* SearchVC.swift */,
 				0F9BD99D214154DA008AD281 /* AllCommentsVC.swift */,
+				0F8F405A2163A77000380D8A /* WriteCommentVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				0FAF7223213EB1AF0029E238 /* LoginVC.swift in Sources */,
 				0FAF7226213EB3740029E238 /* CreateAccountVC.swift in Sources */,
 				0F5DAE54213ECEC200320BB9 /* UpdateProfileVC.swift in Sources */,
+				0F8F405B2163A77000380D8A /* WriteCommentVC.swift in Sources */,
 				0F9BD99E214154DA008AD281 /* AllCommentsVC.swift in Sources */,
 				0F455ED0215968A8006BFDEE /* Genre.swift in Sources */,
 				0F23A73B213EADE5005FC997 /* AppDelegate.swift in Sources */,

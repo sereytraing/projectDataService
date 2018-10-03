@@ -14,14 +14,15 @@ class ListUserVC: DefaultVC {
 
     @IBOutlet weak var tableView: UITableView!
     
-    //var users: [User] = []
-    var users = ["", ""]
+    var users: [User] = []
+    var idGame: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "userCell")
+        self.requestListUserForGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +32,28 @@ class ListUserVC: DefaultVC {
     func requestListUserForGame() {
         let headerToken: HTTPHeaders = ["Content-Type": "application/json",
                                         "Authorization": SessionManager.GetInstance().getToken()!]
-        var url = self.baseUrl + "/games/genre/4"
-
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[Game]>) in
-            if response.response?.statusCode == 401 {
-                self.logOut()
-            } else {
-
-            }
-        })
+        if let id = self.idGame {
+            let url = self.baseUrl + "/games/lenders/\(id)"
+            
+            Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headerToken).validate(statusCode: 200..<300).responseArray(completionHandler: { (response: DataResponse<[User]>) in
+                if response.response?.statusCode == 401 {
+                    self.logOut()
+                } else {
+                    print(response.response?.statusCode)
+                    print(response.error)
+                    if let users = response.result.value {
+                        self.users = users
+                        self.tableView.reloadData()
+                    } else {
+                        let alert = UIAlertController(title: "Oups", message: "Personne ne prête ce jeu actuellement", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
     }
 }
 
@@ -50,7 +64,7 @@ extension ListUserVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserCell
-        cell.bindData(name: "Test", city: "Paris")
+        cell.bindData(name: self.users[indexPath.row].username ?? "Name", city: self.users[indexPath.row].city ?? "City")
         return cell
     }
     
@@ -59,7 +73,8 @@ extension ListUserVC: UITableViewDelegate, UITableViewDataSource {
         if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as? ProfileVC {
             controller.view.backgroundColor = UIColor.white
             controller.editProfileButtonView.isHidden = true
-            //controller.user = self.users[indexPath.row]
+            controller.user = self.users[indexPath.row]
+            controller.isFromHome = false
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

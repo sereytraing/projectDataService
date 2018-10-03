@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom d'utilisateur" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVt-Hg-IWA">
-                                <rect key="frame" x="57" y="60" width="262.5" height="30"/>
+                                <rect key="frame" x="56.5" y="60" width="262.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zhF-jT-vT1"/>
                                 </constraints>
@@ -29,7 +28,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TC5-sO-MaT">
-                                <rect key="frame" x="57" y="89" width="262.5" height="1"/>
+                                <rect key="frame" x="56.5" y="89" width="262.5" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="P6T-fS-7ed"/>
@@ -42,7 +41,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c31-GE-y1y">
-                                <rect key="frame" x="56" y="139" width="262.5" height="1"/>
+                                <rect key="frame" x="56.5" y="139" width="262.5" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Ev2-PO-sfT"/>
@@ -55,7 +54,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPa-tQ-PXp">
-                                <rect key="frame" x="56" y="189" width="262.5" height="1"/>
+                                <rect key="frame" x="56.5" y="189" width="262.5" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="70v-Kx-w8V"/>
@@ -68,7 +67,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNi-tu-y35">
-                                <rect key="frame" x="56" y="266" width="262.5" height="30"/>
+                                <rect key="frame" x="56.5" y="266" width="262.5" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecc-BS-7dG">
                                         <rect key="frame" x="0.0" y="0.0" width="262.5" height="30"/>
@@ -94,7 +93,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Ecc-BS-7dG" firstAttribute="top" secondItem="lNi-tu-y35" secondAttribute="top" id="0Bs-oj-gMd"/>
                                     <constraint firstAttribute="trailing" secondItem="Ecc-BS-7dG" secondAttribute="trailing" id="ACV-YO-1FV"/>
@@ -115,7 +114,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.92941176469999998" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TC5-sO-MaT" firstAttribute="trailing" secondItem="AVt-Hg-IWA" secondAttribute="trailing" id="0IH-dh-6tV"/>
                             <constraint firstItem="lNi-tu-y35" firstAttribute="top" secondItem="4v6-yd-fZQ" secondAttribute="bottom" constant="20" id="0Il-3M-dh8"/>
